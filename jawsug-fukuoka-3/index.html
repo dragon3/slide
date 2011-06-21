@@ -1,0 +1,424 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="no-js ie6" lang="ja"> <![endif]-->
+<!--[if IE 7 ]>    <html class="no-js ie7" lang="ja"> <![endif]-->
+<!--[if IE 8 ]>    <html class="no-js ie8" lang="ja"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="ja"> <!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>CloudWatch のすすめ - JAWS-UG Fukuoka #3</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="js/libs/modernizr-1.7.min.js"></script>
+<script src="js/libs/jquery-1.6.min.js"></script>
+<script src="js/libs/underscore-min.js"></script>
+<script src="js/libs/backbone.js"></script>
+<script src="js/libs/jquery.scrollTo-1.4.2-min.js"></script>
+<script src="js/libs/jquery.overscroll.js"></script>
+<script src="js/libs/jquery.hotkeys.js"></script>
+<script src="js/libs/jquery.tmpl.min.js"></script>
+<script src="js/libs/jquery.transform.js"></script>
+<script src="js/libs/jquery.ui.widget.min.js"></script>
+<script src="js/misc.js"></script>
+<script src="js/mylibs/prez.js"></script>
+<script>
+$($.prez.init);
+</script>
+</head>
+<body><div class="mod-all">
+
+<!--
+====================================================================
+	slide info
+====================================================================
+-->
+<header id="prez-info" class="prez-info">
+	<h1 class="title">"prez." html based rich slide template</h1>
+	<p class="note">The quick brown fox jumps over the lazy dog.</p>
+</header>
+
+<!--
+====================================================================
+	slide pages
+====================================================================
+-->
+<div id="prez-pageStorage">
+	<div class="prez-group">
+		<div class="prez-page">
+			<section class="mod-page help"><div><div>
+				<h1>Commands</h1>
+				<table>
+					<tr><th>o</th><td>toggle overview</td></tr>
+					<tr><th>j</th><td>next page</td></tr>
+					<tr><th>k</th><td>prev page</td></tr>
+					<tr><th>left key</th><td>prev group</td></tr>
+					<tr><th>right key</th><td>next group</td></tr>
+					<tr><th>up key</th><td>prev page in the same group</td></tr>
+					<tr><th>down key</th><td>next page in the same group</td></tr>
+					<tr><th>0</th><td>first page</td></tr>
+					<tr><th>$</th><td>final page</td></tr>
+				</table>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+	<!-- /.prez-group --></div>
+	<div class="prez-group">
+		<div class="prez-page">
+			<section class="mod-page title"><div><div>
+				<h1><span style="color:darkOliveGreen;">CloudWatch</span> のすすめ</h1>
+				<p>YAMAMOTO Ryuzo<br><a href="http://twitter.com/dragon3">@dragon3</a></p>
+			</div></div></section>
+		<!-- .prez-page --></div>
+	<!-- /.prez-group --></div>
+	<div class="prez-group">
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>自己紹介</h1>
+                <ul>
+                  <li>
+                    山本 竜三 ( @dragon3 )
+                    <ul>
+                      <li>
+                        Nulab で働いております
+                        <ul>
+                          <li>Backlog の開発・インフラ・サポート</li>
+                          <li>Cacoo のインフラ
+                            <div style="text-align:center">
+                              <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-B6AD1.png" alt="" />
+                            </div>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>Nulab</h1>
+                <p>
+                  IVSクラウドドライバー選手権2位をいただきました。<br />
+                  ( $X,000 の AWSクーポンいただきました )
+                </p>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>AWSの好きなサービスは...</h1>
+                <p>
+                  <span style="font-size:2em;">CloudFront</span> です
+                </p>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+	<!-- /.prez-group --></div>
+	<div class="prez-group">
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>CloudWatching?</h1>
+                <p class="strong center" style="margin-top: 1em;">
+                  CloudWatchつかってますか？
+                </p>
+                <div style="text-align:center">
+                <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-3E205.png" alt=""/>
+                </div>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>ある会社で...</h1>
+                <ul>
+                  <li>munin/mon/nagios で監視</li>
+                  <li>たまにおきるEC2インスタンスハングが検知しづらかった</li>
+                  <li>CloudWatch を見るとハングのちょっと前から統計情報がとれなくなっているじゃん</li>
+                </ul>
+                <div style="text-align:center;">
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-5554B.png" alt="" width="600" />
+                </div>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>ある会社で...</h1>
+                <p class="strong center">
+                  「CloudWatch で検出できそう」
+                </p>
+                <div style="text-align:center;">
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-5554B.png" alt="" width="600" />
+                </div>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+	<!-- /.prez-group --></div>
+	<div class="prez-group">
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>"CloudWatch"とは？</h1>
+				<ul>
+                  <li>
+                    AWS のリソースを監視するサービス
+                    <div style="text-align:center;float:right;">
+                      <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-63800.png" alt="" width="600" />
+                    </div>
+                  </li>
+                  <li>
+                    無料使用範囲もあります
+                    <ul>
+                      <li>5分間隔モニタリング</li>
+                      <li>10件のアラーム</li>
+                    </ul>
+                  </li>
+				</ul>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>CloudWatch で監視できるもの</h1>
+                <ul>
+                  <li>EC2 (CPU,Network...)</li>
+                  <li>EBS (Read/Write bytes,time,opts ...)</li>
+                  <li>Elastic Load Balancers (instances ...)</li>
+                  <li>RDS</li>
+                </ul>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>CloudWatch 用語</h1>
+                <ul>
+                  <li>
+                    メトリクス ( 情報の収集 )
+                    <ul>
+                      <li>EC2: CPU利用率... / EBS: 読み書き...</li>
+                    </ul>
+                  </li>
+                  <li>アラーム ( <img src="ok_state.png" width="25" /> OK / <img src="alarm_state.png" width="25" /> ALARM / <img src="insufficient_data_state.png" width="25" /> INSUFFICIENT_DATA )</li>
+                  <li>SNS (Simple Notification Service)</li>
+                </ul>
+                <div style="text-align:center;float:center;">
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-514E5.png" alt="" width="600" />
+                </div>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>カスタムメトリクス</h1>
+                <p>
+                  独自の情報収集も可能 <br />
+                  コマンドラインツールから記録可能に
+                </p>
+                <pre>$ mon-put-data \
+  -namespace "Nulab" \
+  -dimensions "Host=web01" \
+  -metric-name ApacheProcess \
+  -value 104</pre>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>設定</h1>
+                <div style="text-align:center;float:right;margin-right:20px;">
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-E7073.png" alt="" />
+                </div>
+                <ul>
+                  <li>
+                    Management Console
+                    <ul>
+                      <li>ブラウザからポチポチと</li>
+                      <li>数が多いと面倒...</li>
+                    </ul>
+                  </li>
+                </ul>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>設定</h1>
+                <ul>
+                  <li>
+                    コマンドラインツール
+                    <ul>
+                      <li>数が多いならスクリプトを書くのが良い</li>
+                    </ul>
+                  </li>
+                </ul>
+                <pre>$ mon-cmd
+$ mon-put-metric-alarm
+$ mon-describe-alarms
+...
+</pre>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>サンプルスクリプト</h1>
+                <p>"running" なインスタンス全部に、CPU使用率の監視設定する例</p>
+                <pre style="font-size:38%">#!/bin/bash
+REGION="us-west-1"
+SNS_TOPIC="us-west-1:XXXXXXXXXXXX:xxxxxxxxxxx"
+instances=$(ec2din --region ${REGION} -F instance-state-name=running | grep INSTANCE | awk '{printf $2 " "}' | sed -e 's/ \{1\}$//')
+for i in $instances
+do
+    echo -n "${i} : "
+    instanceTag=$(ec2dtag --region ${REGION} -F resource-type=instance -F resource-id=${i} -F key=Name | awk '{print $5}')
+    echo -n "${instanceTag} ... "
+    mon-put-metric-alarm \
+        --alarm-name ${instanceTag}_cpu \
+        --metric-name CPUUtilization \
+        --namespace AWS/EC2 \
+        --statistic Average \
+        --period 300 \
+        --threshold 90 \
+        --comparison-operator GreaterThanThreshold \
+        --dimensions InstanceId=${i} \
+        --evaluation-periods 2 \
+        --unit Percent \
+        --alarm-actions arn:aws:sns:${SNS_TOPIC} \
+        --insufficient-data-actions arn:aws:sns:${SNS_TOPIC} \
+        --ok-actions arn:aws:sns:${SNS_TOPIC} \
+        --region ${REGION}
+done</pre>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>通知 (Notification)</h1>
+                <p>Simple Notification Service の機能</p>
+                <ul>
+                  <li>Email</li>
+                  <li>HTTP/HTTPS</li>
+                  <li>SQS (Simple Queue Service)</li>
+                </ul>
+                <div style="text-align:center;float:center;">
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-F7DED.png" alt="" width="600" />
+                </div>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>Notification - Email</h1>
+                <ul>
+                  <li>サーバ管理者に送りつける用</li>
+                </ul>
+                <div style="text-align:center">
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-C20C2.png" alt="" />
+                </div>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>通知 (Notification - HTTP/HTTPS or SQS)</h1>
+                <ul>
+                  <li>他システムと連携する用</li>
+                  <li>
+                    (例)
+                    <div style="text-align:center">
+                    <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-762BE.png" alt="" />
+                    </div>
+                  </li>
+                </ul>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>まとめ</h1>
+                <ul>
+                  <li>
+                    他の監視と組合せて使うとよさそうです
+                    <ul>
+                      <li>監視のためにサーバ内部で行っていた処理を減らせたり</li>
+                    </ul>
+                  </li>
+                  <li>EC2インスタンスハングが検出できそう...</li>
+                </ul>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+	<!-- /.prez-group --></div>
+	<div class="prez-group">
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>Recruiting</h1>
+                <ul>
+                  <li>Nulab では技術者を募集しております！</li>
+                  <li>Backlog の開発者も募集しております！</li>
+                </ul>
+                <div style="text-align:center">
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-B6AD1.png" alt="" />
+                </div>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+		<div class="prez-page">
+			<section class="mod-page plain"><div><div>
+				<h1>ありがとうございました</h1>
+                <p class="center" style="font-size: 2em; margin-top: 1em;">
+                  ありがとうございました <br />
+                  <img src="https://cacoo.com/diagrams/KNPiI4ZuhQM2Up1Y-9BA93.png" alt="" />
+                </p>
+			</div></div></section>
+		<!-- /.prez-page --></div>
+	<!-- /.prez-group --></div>
+    <!-- <div class="prez-group"> -->
+	<!-- 	<div class="prez-page"> -->
+	<!-- 		<section class="mod-page copy"><div><div> -->
+	<!-- 			<h1>prez.</h1> -->
+	<!-- 			<p>This presentation was created with "prez."<br> - html based rich slide template.</p> -->
+	<!-- 			<p><a href="https://github.com/Takazudo/prez.">prez. on gitHub</a></p> -->
+	<!-- 			<p>Developer: <a href="http://twitter.com/Takazudo">@Takazudo</a></p> -->
+	<!-- 		</div></div></section> -->
+	<!-- 	<\!-- /.prez-page -\-></div> -->
+	<!-- <\!-- /.prez-group -\-></div> -->
+<!-- /#prez-pageStorage --></div>
+
+<!--
+====================================================================
+	don't edit the codes below this line
+====================================================================
+-->
+
+<div id="prez-canvas">
+	<div id="prez-canvas-overView"></div>
+	<div id="prez-canvas-presenView"></div>
+</div>
+
+<script id="tmpl-overView" type="text/x-jquery-tmpl">
+	<div class="prez-overView">
+		<header class="prez-overView-hd">
+			<h1>${title}</h1>
+			<p>${note}</p>
+		</header>
+		<div class="prez-overView-bd">
+			<div class="prez-overView-groups">
+				{{each groups}}
+				<div class="prez-overView-group">
+					{{each $value.pages}}
+					<a class="prez-overView-page" href="#page/${$value.pageNum}">
+						<div class="prez-overView-page-main">${$value.simpleHtml}</div>
+						<div class="prez-overView-page-num">${$value.pageNum}</div>
+					</a>
+					{{/each}}
+				</div>
+				{{/each}}
+			</div>
+		</div>
+		<a href="#" class="prez-overView-close">×</a>
+	</div>
+</script>
+
+<script id="tmpl-presenView" type="text/x-jquery-tmpl">
+	<div class="prez-presenView">
+		<div class="prez-presenView-all">
+			{{each groups}}
+				<div class="prez-presenView-group">
+					{{each $value.pages}}
+					<hr class="visuallyhidden" />
+					<div class="prez-presenView-page">
+						<div class="prez-presenView-page-main">{{html $value.html}}</div>
+						<div class="prez-presenView-page-num"><span>${$value.pageNum}</span></div>
+					</div>
+					{{/each}}
+				</div>
+			{{/each}}
+		</div>
+		<a href="#" class="prez-presenView-showOverView">overview (o)</a>
+	</div>
+</script>
+
+<!-- /.mod-all --></div></body>
+</html>
